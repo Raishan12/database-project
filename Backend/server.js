@@ -61,15 +61,15 @@ const server = http.createServer(async (req, res) => {
             console.log(parsedUpdate.query);
             let id = querystring.parse(parsedUpdate.query)
             console.log(id);
-            
+
             console.log("#############################################");
 
             console.log(id);
 
-            const data = await collection.find({_id:new ObjectId(id)}).toArray()
+            const data = await collection.find({ _id: new ObjectId(id) }).toArray()
             console.log(data);
-            
-            
+
+
             let updateHtml = `
             <!DOCTYPE html>
             <html lang="en">
@@ -102,10 +102,10 @@ const server = http.createServer(async (req, res) => {
             console.log(parsedUpdate.query);
             let id = querystring.parse(parsedUpdate.query)
             console.log(id);
-            
+
             console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-            
-            collection.deleteOne({_id:new ObjectId(id)}).then(() => {
+
+            collection.deleteOne({ _id: new ObjectId(id) }).then(() => {
                 console.log("deleted")
             }).catch((err) => {
                 console.log(err.message)
@@ -129,11 +129,11 @@ const server = http.createServer(async (req, res) => {
             res.writeHead(200, { "Content-Type": "text/Html" })
             res.end(delHtml)
 
-            
+
 
         }
 
-        
+
 
     }
 
@@ -167,7 +167,7 @@ const server = http.createServer(async (req, res) => {
             console.log(id)
 
             console.log("**********************************************");
-            
+
 
             let body = "";
             req.on("data", (chunk) => {
@@ -179,8 +179,8 @@ const server = http.createServer(async (req, res) => {
                 console.log(body);
                 const value = querystring.parse(body)
                 console.log(value);
-                
-                collection.updateOne({_id:new ObjectId(id)}, {$set: value}).then(() => {
+
+                collection.updateOne({ _id: new ObjectId(id) }, { $set: value }).then(() => {
                     console.log("Updated")
                 }).catch((err) => {
                     console.log(err.message)
@@ -200,8 +200,8 @@ const server = http.createServer(async (req, res) => {
             </html>
             `
 
-            res.writeHead(200, { "Content-Type": "text/Html" })
-            res.end(success)
+                res.writeHead(200, { "Content-Type": "text/Html" })
+                res.end(success)
             });
         }
 
